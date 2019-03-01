@@ -24,7 +24,7 @@ extern "C" {
 
 void bsd_os_init(void);
 
-int32_t bsd_os_timedwait(uint32_t context, uint32_t timeout);
+int32_t bsd_os_timedwait(uint32_t context, uint32_t * timeout);
 
 void bsd_os_errno_set(int errno_val);
 
