@@ -24,7 +24,19 @@ extern "C" {
 
 void bsd_os_init(void);
 
-int32_t bsd_os_timedwait(uint32_t context, uint32_t timeout);
+/* @brief Put a thread to a sleep for a specific time or until an event occurs.
+ *
+ * @param[in]      context   A unique identifier assigned by the library to identify the context.
+ * @param[in, out] p_timeout A pointer to the timeout value, in milliseconds. -1 for infinite
+ *                           timeout. Contains timeout value as input, remainig time to sleep
+ *                           as output.
+ *
+ * @retval  0 If the procedure succeeded - it was either interrupted or an timeout occured.
+ *            To identify which one took place, verify the content of the variable pointed
+ *            by p_timeout (0 means that timeout occured).
+ * @retval -1 If the procedure failed.
+ */
+int32_t bsd_os_timedwait(uint32_t context, int32_t * p_timeout);
 
 void bsd_os_errno_set(int errno_val);
 
