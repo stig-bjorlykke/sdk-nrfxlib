@@ -211,6 +211,12 @@ typedef uint32_t nrf_fd_set;
  * @sa nrf_sec_cipher_t.
  */
 #define NRF_SO_CIPHER_IN_USE 7
+
+/**@brief
+ * Socket option to set DTLS handshake timeout value.
+ * Please see @ref nrf_socket_tls_dtls_handshake_timeouts for allowed values.
+ */
+#define NRF_SO_SEC_DTLS_HANDSHAKE_TIMEOUT 8
 /**@} */
 
 /**@defgroup nrf_socket_pdn PDN socket
@@ -514,6 +520,29 @@ typedef uint32_t nrf_fd_set;
 
 /** Use non-blocking I/O. */
 #define NRF_O_NONBLOCK 0x01
+/**@} */
+
+/**@defgroup nrf_socket_tls_dtls_handshake_timeouts DTLS handshake timeout values
+ * @brief Allowed timeout values for DTLS handshake timeout socket option according
+ *        to RFC6347 section 4.2.4.1. Default is 123 seconds.
+ *        (https://tools.ietf.org/html/rfc6347#section-4.2.4.1)
+ * @ingroup nrf_socket_tls
+ * @{
+ */
+/** 1 second */
+#define NRF_SO_SEC_DTLS_HANDSHAKE_TIMEOUT_1S	1
+/** 1s + 2s */
+#define NRF_SO_SEC_DTLS_HANDSHAKE_TIMEOUT_3S	3
+/** 1s + 2s + 4s */
+#define NRF_SO_SEC_DTLS_HANDSHAKE_TIMEOUT_7S	7
+/** 1s + 2s + 4s + 8s */
+#define NRF_SO_SEC_DTLS_HANDSHAKE_TIMEOUT_15S	15
+/** 1s + 2s + 4s + 8s + 16 */
+#define NRF_SO_SEC_DTLS_HANDSHAKE_TIMEOUT_31S	31
+/** 1s + 2s + 4s + 8s + 16 + 32 */
+#define NRF_SO_SEC_DTLS_HANDSHAKE_TIMEOUT_63S	63
+/** 1s + 2s + 4s + 8s + 16 + 32 + 60 */
+#define NRF_SO_SEC_DTLS_HANDSHAKE_TIMEOUT_123S	123
 /**@} */
 
 /**
@@ -1668,6 +1697,8 @@ void nrf_freeaddrinfo(struct nrf_addrinfo *p_res);
  *             otherwise.
  */
 int nrf_setdnsaddr(int family, const void *in_addr);
+
+/** @} */
 
 #ifdef __cplusplus
 }
