@@ -217,6 +217,13 @@ typedef uint32_t nrf_fd_set;
  * Please see @ref nrf_socket_tls_dtls_handshake_timeouts for allowed values.
  */
 #define NRF_SO_SEC_DTLS_HANDSHAKE_TIMEOUT 8
+
+/**@brief
+ * Socket option to set session cache validity timeout value.
+ * This option accepts a timeout in minutes.
+ * A timeout value 0 will configure no session cache timeout.
+ */
+#define NRF_SO_SEC_SESSION_CACHE_TIMEOUT 9
 /**@} */
 
 /**@defgroup nrf_socket_pdn PDN socket
